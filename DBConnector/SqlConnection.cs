@@ -17,7 +17,6 @@ namespace DBConnector
 
         public override void Open()
         {
-            base.Open();
             Console.WriteLine("Opening connection to SQL Server...");
             Console.WriteLine($"Timeout is set to {base.Timeout}");
         }

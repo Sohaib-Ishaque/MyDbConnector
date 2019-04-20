@@ -2,10 +2,10 @@
 
 namespace DBConnector
 {
-    public class DBConnection
+    public abstract class DBConnection
     {
-        private readonly string _connectionString;
-        public TimeSpan Timeout { get; set; }
+        private protected readonly string _connectionString;
+        public virtual TimeSpan Timeout { get; set; }
 
         public DBConnection(string connectionString)
         {
@@ -15,25 +15,8 @@ namespace DBConnector
             this._connectionString = connectionString;
         }
 
-        public virtual void Open()
-        {
-            var startTime = DateTime.Now;
+        public abstract void Open();
 
-            // connection code would go here...
-
-            var endTime = DateTime.Now;
-
-            CheckTimeout(startTime, endTime);
-        }
-
-        public virtual void Close()
-        {
-        }
-
-        private void CheckTimeout(DateTime startTime, DateTime endTime)
-        {
-            if (endTime - startTime >= this.Timeout)
-                throw new TimeoutException("The connection timed out...");
-        }
+        public abstract void Close();
     }
 }

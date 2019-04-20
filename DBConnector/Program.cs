@@ -16,13 +16,36 @@ namespace DBConnector
 
             try
             {
+                var emptyConnectionString = new SqlConnection(string.Empty);
+                var emptyCommand = new DBCommand(emptyConnectionString, "DROP TABLE tblUsers;");
+                emptyCommand.Execute();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            try
+            {
+                var whitespaceConnectionString = new SqlConnection(" ");
+                var whitespaceCommand = new DBCommand(whitespaceConnectionString, "DROP TABLE tblUsers;");
+                whitespaceCommand.Execute();
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
+
+            try
+            {
                 var fakeSQLConnection = new SqlConnection("fasdf");
                 var fakeSQLCommand = new DBCommand(fakeSQLConnection, null);
                 fakeSQLCommand.Execute();
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(e.Message);
             }
         }
     }

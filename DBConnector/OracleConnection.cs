@@ -7,6 +7,7 @@ namespace DBConnector
         public OracleConnection(string connectionString)
             : base(connectionString)
         {
+            base.Timeout = TimeSpan.FromSeconds(120);
         }
 
         public override void Close()
@@ -16,9 +17,8 @@ namespace DBConnector
 
         public override void Open()
         {
-            base.Open();
             Console.WriteLine("Opening connection to Oracle...");
-            Console.WriteLine($"Oracle has no timeout");
+            Console.WriteLine($"Timeout is set to {base.Timeout}");
         }
     }
 }

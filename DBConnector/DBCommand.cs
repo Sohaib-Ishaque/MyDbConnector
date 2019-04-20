@@ -9,8 +9,8 @@ namespace DBConnector
 
         public DBCommand(DBConnection dBConnection, string sql)
         {
-            _dBConnection = dBConnection ?? throw new InvalidOperationException("DBConnection required.");
-            this._sql = sql ?? throw new InvalidOperationException("sql required.");
+            _dBConnection = dBConnection;
+            this._sql = sql ?? throw new InvalidOperationException("Sql required.");
         }
 
         public void Execute()
